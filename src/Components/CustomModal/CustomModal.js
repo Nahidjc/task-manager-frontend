@@ -34,6 +34,7 @@ class CustomModal extends Component {
       <Modal isOpen={true} toggle={toggle}>
         <ModalHeader toggle={toggle}> Task Item </ModalHeader>
         <ModalBody>
+      
           <Form>
             {/* 3 formgroups
                 1 title label */}
@@ -47,7 +48,6 @@ class CustomModal extends Component {
                 placeholder="Enter Task Title"
               />
             </FormGroup>
-
             {/* 2 description label */}
             <FormGroup>
               <Label for="description">Description</Label>
