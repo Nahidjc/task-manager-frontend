@@ -40,7 +40,7 @@ class App extends Component {
         method: "PUT",
         headers: headers,
         data: item,
-      }).then((res) => console.log(res));
+      }).then((res) => this.refreshList());
       return;
     }
     // if new post to submit
@@ -50,7 +50,15 @@ class App extends Component {
       method: "POST",
       headers: headers,
       data: item,
-    }).then((res) => console.log(res));
+    }).then((res) => this.refreshList());
+  };
+
+  handleDelete = (item) => {
+    Axios({
+      url: `http://localhost:8000/api/tasks/${item.id}/`,
+      method: "DELETE",
+      headers: headers,
+    }).then((res) => this.refreshList());
   };
 
   componentDidMount() {
@@ -94,6 +102,10 @@ class App extends Component {
         </span>
       </div>
     );
+  };
+
+  editItem = (item) => {
+    this.setState({ activeItem: item, modal: !this.state.modal });
   };
 
   renderItems = () => {
@@ -148,7 +160,7 @@ class App extends Component {
                     Add task
                   </button>
                 </div>
-
+                {this.renderTabList()}
                 <ul className="list-group list-group-flush">
                   {this.renderItems()}
                 </ul>
